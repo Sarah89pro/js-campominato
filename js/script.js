@@ -21,7 +21,10 @@ var bombList = [];                         //numeri sbagliati (bombe)
 var allowedNumber = [];                    //numeri corretti inseriti dall'utente
 var user= 0;                               // scelta utente
 
+
+
 //creazione numeri casuali univoci
+
 while (bombList.length < bombNumber) {
     var bomb = randomNumber (maxNumber);
 
@@ -33,8 +36,40 @@ while (bombList.length < bombNumber) {
 console.table (bombList);
 
 
-/****UTILITY****/
 
+//game loop
+
+while ( (allowedNumber.length < chance) && (! bombList.includes(user)) ) {
+    //scelta user
+    user = parseInt ( prompt ("Inserisci un numero da 1 a " +  maxNumber + "\nTentativi riusciti: " + allowedNumber.length + "di " + chance) );
+
+    while ( isNaN(user) || user < 1 || user > maxNumber ) {
+        user = parseInt ( prompt ("Inserisci un numero da 1 a " +  maxNumber) );
+    }
+    console.log(user);
+
+    //controllo scelta
+    if ( bombList.includes(user) ) {
+        alert ("Hai perso! \n Hai fatto " + allowedNumber.length + " tentativi prima di trovare una bomba.");
+    } 
+    else if ( allowedNumber.includes(user) ) {
+            alert ("Hai già inserito questo numero: inseriscine un altro!");
+    }
+
+    else if ( ! allowedNumber.includes(user) ) {
+        allowedNumber.push(user);
+    }
+
+    // controllo raggiungimento possibilita
+    if (allowedNumber.length === chance) {
+        alert ("Hai vinto!");
+    }
+}
+
+
+/*********
+* UTILITY *
+*********/
 
 //funzione per generare numero random
 function randomNumber(max) {
