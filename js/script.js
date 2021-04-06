@@ -23,19 +23,6 @@ var user= 0;                               // scelta utente
 
 
 
-//creazione numeri casuali univoci
-
-while (bombList.length < bombNumber) {
-    var bomb = randomNumber (maxNumber);
-
-    if (!bombList.includes(bomb)) {
-        bombList.push(bomb);
-    }
-}
-
-console.table (bombList);
-
-
 //scegli la difficolta
 
 var level = parseInt ( prompt ( "Scegli il livello di difficoltà: 0, 1 o 2?").trim() );
@@ -63,6 +50,18 @@ switch (level) {
 chance = maxNumber - bombNumber;
 
 
+
+//creazione 16 numeri casuali univoci (bombe)
+
+while (bombList.length < bombNumber) {
+    var bomb = randomNumber (maxNumber);
+
+    if (!bombList.includes(bomb)) {
+        bombList.push(bomb);
+    }
+}
+
+console.table (bombList);
 
 
 //game loop
