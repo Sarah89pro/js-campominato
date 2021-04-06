@@ -14,9 +14,9 @@ con difficoltà 2 => tra 1 e 50*/
 
 //variabili iniziali
 
-var maxNumber = 100;                       //numeri che il giocatore pò utilizzare
+var maxNumber;                             //numeri che il giocatore pò utilizzare
 var bombNumber = 16;                       //quante bombe ci sono
-var chance = maxNumber - bombNumber;       //numeri corretti
+var chance;                                //numeri corretti
 var bombList = [];                         //numeri sbagliati (bombe)
 var allowedNumber = [];                    //numeri corretti inseriti dall'utente
 var user= 0;                               // scelta utente
@@ -34,6 +34,34 @@ while (bombList.length < bombNumber) {
 }
 
 console.table (bombList);
+
+
+//scegli la difficolta
+
+var level = parseInt ( prompt ( "Scegli il livello di difficoltà: 0, 1 o 2?").trim() );
+
+while ( isNaN(level) || level < 0 || level > 2 ) {
+    level = parseInt ( prompt ( "Scegli il livello di difficoltà: 0, 1 o 2?").trim() );
+}
+
+
+//casistiche 0, 1, 2
+
+switch (level) {
+    case 0:
+        maxNumber = 100;
+        break;
+
+    case 1:
+        maxNumber = 80;
+        break;
+        
+    case 2:
+        maxNumber = 50;
+}
+
+chance = maxNumber - bombNumber;
+
 
 
 
@@ -65,6 +93,13 @@ while ( (allowedNumber.length < chance) && (! bombList.includes(user)) ) {
         alert ("Hai vinto!");
     }
 }
+
+
+//the end
+
+console.log("GAME OVER");
+console.log("Numeri validi inseriti: " + allowedNumber);
+console.log("Tentativi riusciti " + allowedNumber.length);
 
 
 /*********
